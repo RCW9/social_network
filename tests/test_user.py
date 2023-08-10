@@ -10,7 +10,7 @@ def test_artist_constructs():
     assert user.email == "Test email"
 
 """
-We can format artists to strings nicely
+We can format user to strings nicely
 """
 def test_user_formats_nicely():
     user = User(1, "Test username", "Test email")
@@ -18,7 +18,7 @@ def test_user_formats_nicely():
 
 
 """
-We can compare two identical artists
+We can compare two identical user
 And have them be equal
 """
 def test_users_are_equal():
