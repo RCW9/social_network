@@ -8,7 +8,7 @@ class UserRepository:
 
     # Retrieve all artists
     def all(self):
-        rows = self._connection.execute('SELECT * from users')
+        rows = self._connection.execute('SELECT * from users ORDER By id ASC')
         users = []
         for row in rows:
             item = User(row["id"], row["username"], row["email"])
@@ -26,9 +26,13 @@ class UserRepository:
     def create(self, user):
         self._connection.execute('INSERT INTO users(username, email) VALUES (%s, %s)', [
                     user.username, user.email])
-        return None
+
     
     def delete(self, user_id):
         self._connection.execute(
-            'DELETE FROM artists WHERE id = %s', [user_id])
-        return None
+            'DELETE FROM users WHERE id = %s', [user_id])
+        
+
+    def update_email(self, user):
+        self._connection.execute(
+            'UPDATE users SET email = %s WHERE id = %s', [user.email, user.id])
